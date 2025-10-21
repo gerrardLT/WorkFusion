@@ -1,0 +1,39 @@
+{
+  "generated_at": "2025-10-15T14:51:31.795141",
+  "time_range_hours": 24,
+  "summary": {
+    "total_sessions": 1,
+    "successful_sessions": 1,
+    "failed_sessions": 1,
+    "success_rate": 100.0,
+    "total_items_crawled": 100,
+    "avg_duration_seconds": 10.0,
+    "total_errors": 1,
+    "total_alerts": 1
+  },
+  "spider_statistics": [
+    {
+      "spider_name": "test_spider",
+      "total_runs": 1,
+      "successful_runs": 1,
+      "failed_runs": 0,
+      "success_rate": 100.0,
+      "total_items": 100,
+      "avg_items_per_run": 100.0
+    }
+  ],
+  "recent_errors": [
+    {
+      "type": "test_error",
+      "message": "这是一个测试错误",
+      "timestamp": "2025-10-15T14:51:31.790610"
+    }
+  ],
+  "recent_alerts": [
+    {
+      "message": "测试告警",
+      "level": "warning",
+      "timestamp": "2025-10-15T14:51:31.792531"
+    }
+  ]
+}

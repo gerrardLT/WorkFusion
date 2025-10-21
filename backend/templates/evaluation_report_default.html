@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm 1.5cm;
+            @top-center {
+                content: "项目评估报告";
+                font-size: 10pt;
+                color: #666;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 5px;
+            }
+            @bottom-right {
+                content: "第 " counter(page) " 页 / 共 " counter(pages) " 页";
+                font-size: 9pt;
+                color: #999;
+            }
+        }
+
+        body {
+            font-family: "SimSun", "Microsoft YaHei", sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 24pt;
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+        }
+
+        .header .subtitle {
+            font-size: 12pt;
+            color: #7f8c8d;
+        }
+
+        .meta-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+
+        .meta-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .meta-info td {
+            padding: 5px 10px;
+            font-size: 10pt;
+        }
+
+        .meta-info td:first-child {
+            font-weight: bold;
+            width: 120px;
+            color: #555;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            page-break-inside: avoid;
+        }
+
+        .section-title {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .score-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .score-box .score {
+            font-size: 48pt;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .score-box .label {
+            font-size: 12pt;
+            opacity: 0.9;
+        }
+
+        .recommendation {
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 12pt;
+        }
+
+        .recommendation.highly-recommended {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            color: #155724;
+        }
+
+        .recommendation.recommended {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            color: #0c5460;
+        }
+
+        .recommendation.neutral {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            color: #856404;
+        }
+
+        .recommendation.not-recommended {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+        }
+
+        .recommendation.strongly-not-recommended {
+            background: #f5c6cb;
+            border-left: 4px solid #a71d2a;
+            color: #491217;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+
+        .stat-card .label {
+            font-size: 10pt;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .value {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .qualification-list {
+            margin: 10px 0;
+        }
+
+        .qualification-item {
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+        }
+
+        .qualification-item.matched {
+            background: #d4edda;
+        }
+
+        .qualification-item.missing {
+            background: #f8d7da;
+        }
+
+        .qualification-item .icon {
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .qualification-item.matched .icon {
+            color: #28a745;
+        }
+
+        .qualification-item.missing .icon {
+            color: #dc3545;
+        }
+
+        .timeline {
+            margin: 15px 0;
+        }
+
+        .timeline-item {
+            padding: 10px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+
+        .timeline-item.critical {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+        }
+
+        .timeline-item .date {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .timeline-item .event {
+            color: #555;
+            font-size: 10pt;
+        }
+
+        .risk-list {
+            margin: 10px 0;
+        }
+
+        .risk-item {
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border-left: 4px solid;
+        }
+
+        .risk-item.high {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+
+        .risk-item.medium {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+        }
+
+        .risk-item.low {
+            background: #d1ecf1;
+            border-left-color: #17a2b8;
+        }
+
+        .risk-item .title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .risk-item .description {
+            font-size: 10pt;
+            color: #555;
+        }
+
+        .advice-list {
+            margin: 10px 0;
+        }
+
+        .advice-item {
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid;
+        }
+
+        .advice-item.high {
+            border-left-color: #dc3545;
+        }
+
+        .advice-item.medium {
+            border-left-color: #ffc107;
+        }
+
+        .advice-item.low {
+            border-left-color: #17a2b8;
+        }
+
+        .advice-item .priority {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 9pt;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .advice-item.high .priority {
+            background: #dc3545;
+            color: white;
+        }
+
+        .advice-item.medium .priority {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .advice-item.low .priority {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            text-align: center;
+            font-size: 9pt;
+            color: #999;
+        }
+
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 80pt;
+            color: rgba(0, 0, 0, 0.05);
+            z-index: -1;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    {% if watermark %}
+    <div class="watermark">{{ watermark }}</div>
+    {% endif %}
+
+    <div class="header">
+        <h1>{{ title }}</h1>
+        <div class="subtitle">{{ subtitle }}</div>
+    </div>
+
+    <div class="meta-info">
+        <table>
+            <tr>
+                <td>报告编号：</td>
+                <td>{{ report_id }}</td>
+                <td>生成时间：</td>
+                <td>{{ created_at }}</td>
+            </tr>
+            <tr>
+                <td>项目名称：</td>
+                <td>{{ project_name }}</td>
+                <td>企业名称：</td>
+                <td>{{ company_name }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="score-box">
+        <div class="label">综合评分</div>
+        <div class="score">{{ overall_score }}</div>
+        <div class="label">{{ recommendation_text }}</div>
+    </div>
+
+    <div class="recommendation {{ recommendation_class }}">
+        <strong>综合结论：</strong>{{ conclusion }}
+    </div>
+
+    <div class="section">
+        <div class="section-title">1. 项目概况</div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="label">项目预算</div>
+                <div class="value">{{ project_budget }} 万元</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">所在地区</div>
+                <div class="value">{{ project_area }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">投标截止</div>
+                <div class="value">{{ project_deadline }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">剩余天数</div>
+                <div class="value">{{ days_remaining }} 天</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">2. 资质匹配分析</div>
+        <p><strong>匹配率：</strong>{{ qualification_match_rate }}% ({{ qual_matched }}/{{ qual_total }})</p>
+        <div class="qualification-list">
+            {% for qual in qualifications %}
+            <div class="qualification-item {{ 'matched' if qual.matched else 'missing' }}">
+                <span class="icon">{{ '✓' if qual.matched else '✗' }}</span>
+                <span>{{ qual.name }} ({{ qual.level }})</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% if missing_qualifications %}
+        <p><strong>缺失资质：</strong>{{ missing_qualifications | join(', ') }}</p>
+        {% endif %}
+    </div>
+
+    <div class="section">
+        <div class="section-title">3. 时间节点分析</div>
+        <p><strong>紧急程度：</strong>
+            {% if urgency_level == 'critical' %}
+            <span style="color: #dc3545; font-weight: bold;">极高</span>
+            {% elif urgency_level == 'high' %}
+            <span style="color: #ff6b6b; font-weight: bold;">高</span>
+            {% elif urgency_level == 'medium' %}
+            <span style="color: #ffc107; font-weight: bold;">中</span>
+            {% else %}
+            <span style="color: #28a745; font-weight: bold;">低</span>
+            {% endif %}
+        </p>
+        <div class="timeline">
+            {% for date_item in key_dates %}
+            <div class="timeline-item {{ 'critical' if date_item.is_critical else '' }}">
+                <div class="date">{{ date_item.date }}</div>
+                <div class="event">{{ date_item.event }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">4. 历史业绩分析</div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="label">类似项目数</div>
+                <div class="value">{{ similar_projects_count }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">历史中标率</div>
+                <div class="value">{{ success_rate }}%</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">平均中标金额</div>
+                <div class="value">{{ average_bid_amount }} 万元</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">累计中标额</div>
+                <div class="value">{{ total_amount }} 万元</div>
+            </div>
+        </div>
+    </div>
+
+    {% if risks %}
+    <div class="section">
+        <div class="section-title">5. 风险提示</div>
+        <p><strong>风险等级：</strong>
+            {% if overall_risk_level == 'high' %}
+            <span style="color: #dc3545; font-weight: bold;">高</span>
+            {% elif overall_risk_level == 'medium' %}
+            <span style="color: #ffc107; font-weight: bold;">中</span>
+            {% else %}
+            <span style="color: #28a745; font-weight: bold;">低</span>
+            {% endif %}
+        </p>
+        <div class="risk-list">
+            {% for risk in risks %}
+            <div class="risk-item {{ risk.level }}">
+                <div class="title">{{ risk.title }}</div>
+                <div class="description">{{ risk.description }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if recommendations %}
+    <div class="section">
+        <div class="section-title">6. 行动建议</div>
+        <div class="advice-list">
+            {% for advice in recommendations %}
+            <div class="advice-item {{ advice.priority }}">
+                <span class="priority">{{ advice.priority | upper }}</span>
+                <span>{{ advice.action }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="footer">
+        <p>本报告由招投标AI系统自动生成 | 报告ID：{{ report_id }}</p>
+        <p>生成时间：{{ created_at }} | 系统版本：v2.8.0</p>
+    </div>
+</body>
+</html>
+

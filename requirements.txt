@@ -1,0 +1,55 @@
+# 核心框架
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.5.0
+python-multipart>=0.0.6
+
+# MinerU相关
+mineru>=2.5.4  # MinerU 2.5.4+ (替代 magic-pdf)
+pdfplumber>=0.9.0
+pymupdf>=1.23.0
+
+# DashScope API
+dashscope>=1.17.0
+
+# 原有依赖保持
+faiss-cpu>=1.7.4
+rank-bm25>=0.2.2
+pandas>=2.1.0
+numpy>=1.24.0
+jieba>=0.42.1
+
+# Web开发
+sqlalchemy>=2.0.0
+alembic>=1.12.0
+python-multipart>=0.0.6
+
+# 工具类
+python-dotenv>=1.0.0
+loguru>=0.7.0
+tqdm>=4.66.0
+
+# 文本处理
+tiktoken>=0.5.0
+pathlib>=1.0.1
+
+# 重试和错误处理
+tenacity>=8.2.0
+
+# 其他核心依赖
+requests>=2.31.0
+aiofiles>=23.0.0
+
+# PDF生成
+reportlab>=4.0.0
+Pillow>=10.0.0  # 图片处理
+
+# 用户认证相关
+pyjwt>=2.8.0
+bcrypt>=4.1.0
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+
+# OAuth客户端
+authlib>=1.2.0
+httpx>=0.25.0

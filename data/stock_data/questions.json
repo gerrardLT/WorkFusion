@@ -1,0 +1,164 @@
+[
+  {
+    "question_id": "Q001",
+    "question_text": "该公司的主营业务是什么？",
+    "question_type": "string",
+    "category": "公司基本面",
+    "difficulty": "easy",
+    "target_companies": ["中芯国际"],
+    "expected_answer_format": "详细描述公司的核心业务和产品服务"
+  },
+  {
+    "question_id": "Q002",
+    "question_text": "公司最新一季度的营收增长率是多少？",
+    "question_type": "string",
+    "category": "财务表现",
+    "difficulty": "medium",
+    "expected_answer_format": "具体的数值和增长趋势分析"
+  },
+  {
+    "question_id": "Q003",
+    "question_text": "分析师对该公司未来12个月的投资建议是什么？",
+    "question_type": "string",
+    "category": "投资建议",
+    "difficulty": "medium",
+    "expected_answer_format": "投资评级和具体建议理由"
+  },
+  {
+    "question_id": "Q004",
+    "question_text": "公司在行业中的竞争优势有哪些？",
+    "question_type": "string",
+    "category": "竞争分析",
+    "difficulty": "hard",
+    "expected_answer_format": "多维度分析公司的核心竞争力"
+  },
+  {
+    "question_id": "Q005",
+    "question_text": "该公司面临的主要风险因素是什么？",
+    "question_type": "string",
+    "category": "风险分析",
+    "difficulty": "medium",
+    "expected_answer_format": "识别并分析关键风险点"
+  },
+  {
+    "question_id": "Q006",
+    "question_text": "公司的研发投入占营收的比例是多少？体现了什么战略意图？",
+    "question_type": "string",
+    "category": "研发创新",
+    "difficulty": "medium",
+    "expected_answer_format": "具体比例数据和战略分析"
+  },
+  {
+    "question_id": "Q007",
+    "question_text": "相比同行业公司，该公司的估值水平如何？",
+    "question_type": "string",
+    "category": "估值分析",
+    "difficulty": "hard",
+    "expected_answer_format": "多指标对比分析和估值合理性判断"
+  },
+  {
+    "question_id": "Q008",
+    "question_text": "公司管理层在最新财报中提到的重点发展方向是什么？",
+    "question_type": "string",
+    "category": "战略规划",
+    "difficulty": "medium",
+    "expected_answer_format": "管理层表态和战略重点"
+  },
+  {
+    "question_id": "Q009",
+    "question_text": "该行业的市场规模和增长前景如何？",
+    "question_type": "string",
+    "category": "行业分析",
+    "difficulty": "medium",
+    "target_industries": ["半导体", "芯片制造"],
+    "expected_answer_format": "市场规模数据和增长趋势预测"
+  },
+  {
+    "question_id": "Q010",
+    "question_text": "国产化替代对该公司业务的影响是正面还是负面？请详细分析。",
+    "question_type": "string",
+    "category": "政策影响",
+    "difficulty": "hard",
+    "expected_answer_format": "政策影响的多维度分析和结论"
+  },
+  {
+    "question_id": "Q011",
+    "question_text": "公司的产能利用率变化趋势如何？反映了什么问题？",
+    "question_type": "string",
+    "category": "运营分析",
+    "difficulty": "medium",
+    "expected_answer_format": "产能数据分析和经营状况判断"
+  },
+  {
+    "question_id": "Q012",
+    "question_text": "该公司与主要客户的合作关系稳定性如何？",
+    "question_type": "string",
+    "category": "客户关系",
+    "difficulty": "medium",
+    "expected_answer_format": "客户结构分析和合作稳定性评估"
+  },
+  {
+    "question_id": "Q013",
+    "question_text": "公司的毛利率变化趋势及其驱动因素是什么？",
+    "question_type": "string",
+    "category": "盈利能力",
+    "difficulty": "medium",
+    "expected_answer_format": "毛利率数据和变化原因分析"
+  },
+  {
+    "question_id": "Q014",
+    "question_text": "分析师预测的目标价格及其估值依据是什么？",
+    "question_type": "string",
+    "category": "估值预测",
+    "difficulty": "hard",
+    "expected_answer_format": "目标价格和详细估值方法"
+  },
+  {
+    "question_id": "Q015",
+    "question_text": "公司在ESG（环境、社会、治理）方面的表现如何？",
+    "question_type": "string",
+    "category": "ESG分析",
+    "difficulty": "medium",
+    "expected_answer_format": "ESG各维度的具体表现评价"
+  },
+  {
+    "question_id": "Q016",
+    "question_text": "该公司的现金流状况是否健康？有哪些值得关注的点？",
+    "question_type": "string",
+    "category": "现金流分析",
+    "difficulty": "medium",
+    "expected_answer_format": "现金流数据分析和健康度评估"
+  },
+  {
+    "question_id": "Q017",
+    "question_text": "公司在技术创新方面有哪些突破？对业绩有何影响？",
+    "question_type": "string",
+    "category": "技术创新",
+    "difficulty": "hard",
+    "expected_answer_format": "技术突破详述和业绩影响分析"
+  },
+  {
+    "question_id": "Q018",
+    "question_text": "与历史同期相比，公司当前的经营效率如何？",
+    "question_type": "string",
+    "category": "经营效率",
+    "difficulty": "medium",
+    "expected_answer_format": "效率指标对比和趋势分析"
+  },
+  {
+    "question_id": "Q019",
+    "question_text": "宏观经济环境变化对该公司业务的影响程度如何？",
+    "question_type": "string",
+    "category": "宏观影响",
+    "difficulty": "hard",
+    "expected_answer_format": "宏观因素影响的定量和定性分析"
+  },
+  {
+    "question_id": "Q020",
+    "question_text": "投资该公司股票的最佳时机和策略是什么？",
+    "question_type": "string",
+    "category": "投资策略",
+    "difficulty": "hard",
+    "expected_answer_format": "投资时机判断和具体策略建议"
+  }
+]

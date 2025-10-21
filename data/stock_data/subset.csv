@@ -1,0 +1,4 @@
+file_id,company_name,report_type,publish_date,analyst,institution,title,file_path,file_size,pages,language
+sample_001,中芯国际,深度研究,2024-03-15,张三,华泰证券,中芯国际深度研究：技术升级驱动业绩增长,pdf_reports/中芯国际_华泰证券_深度研究_20240315.pdf,2048576,25,中文
+sample_002,中芯国际,季报点评,2024-01-20,李四,中原证券,中芯国际2023Q4季报点评：产能利用率提升显著,pdf_reports/中芯国际_中原证券_季报点评_20240120.pdf,1536000,15,中文
+sample_003,中芯国际,行业分析,2024-02-10,王五,光大证券,半导体行业深度：国产化替代加速进行,pdf_reports/半导体行业_光大证券_行业分析_20240210.pdf,3072000,35,中文
